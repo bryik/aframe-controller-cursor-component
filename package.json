@@ -10,8 +10,7 @@
     "lint": "semistandard -v | snazzy",
     "postpublish": "npm run dist",
     "preghpages": "npm run build && shx rm -rf gh-pages && shx mkdir gh-pages && shx cp -r examples/* gh-pages",
-    "ghpages": "npm run preghpages && ghpages -p gh-pages",
-    "unboil": "node scripts/unboil.js"
+    "ghpages": "npm run preghpages && ghpages -p gh-pages"
   },
   "repository": {
     "type": "git",
