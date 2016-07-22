@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>A-Frame Vive Cursor Component - Color and Radius</title>
+    <script src="../build.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets></a-assets>
+
+      <a-entity vive-controls="hand: left"></a-entity>
+      <a-entity id="cursor" vive-controls="hand: right" vive-cursor="color: red; radius: 0.01"></a-entity>
+
+       <a-sphere id="sphere" position="0 2.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+       <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+       <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+    <!-- Attach test events to sphere -->
+    <script type="text/javascript">
+      var sphere = d3.select('#sphere');
+      sphere.on('click', click);
+      sphere.on('mouseenter', mouseenter);
+      sphere.on('mouseleave', mouseleave);
+
+      function mouseenter () {
+        console.log('MOUSEENTER');
+        var sphere = d3.select(this);
+        sphere.attr('color', 'blue');
+      }
+
+      function mouseleave () {
+        console.log('MOUSELEAVE');
+        var sphere = d3.select(this);
+        sphere.attr('color', 'red');
+      }
+
+      function click () {
+        console.log('CLICK');
+        var currentRadius = this.getAttribute('radius');
+        var sphere = d3.select(this);
+        var newRadius;
+
+        if (currentRadius === '2') {
+          newRadius = 1.25;
+        } else {
+          newRadius = 2;
+        }
+
+        sphere.attr('radius', newRadius);
+      }
+    </script>
+  </body>
+</html>
