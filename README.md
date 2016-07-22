@@ -1,8 +1,10 @@
 ## aframe-vive-cursor-component
 
-    Note: This component only works with the master branch of A-Frame (soon to be released as 0.3.0).
+    Note: This component only works with A-Frame's master branch (soon to be released as 0.3.0).
 
 This is an [A-Frame](https://aframe.io) component for adding a cursor to an HTC Vive controller.
+
+![cursor-gif](http://i.imgur.com/QCgZWd7.gif)
 
 ### API
 
