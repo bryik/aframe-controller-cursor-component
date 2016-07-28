@@ -39,7 +39,7 @@ Install and use by directly including the [browser files](dist):
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://cdn.rawgit.com/aframevr/aframe/master/dist/aframe.min.js"></script>
-  <script src="https://rawgit.com/aframe-vive-cursor-component/master/dist/aframe-vive-cursor-component.min.js"></script>
+  <script src="https://rawgit.com/bryik/aframe-vive-cursor-component/master/dist/aframe-vive-cursor-component.min.js"></script>
 </head>
 
 <body>
