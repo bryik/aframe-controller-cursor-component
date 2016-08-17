@@ -29,7 +29,7 @@ Note that "mouseup" and "mousedown" have been mapped to the trigger. In other wo
 
 To avoid intersecting with the laser, the raycaster's "near" property is set to 0.03. As a result, you may see odd results when the top of the controller is held extremely close to the entity you wish to intersect.
 
-Generally, this component assumes the Vive controller model. If you are using the hand model or a different model entirely, you may need to change the position of the laser.
+This component was built for the Vive controller model. If you are using the hand model or a different model entirely, you may need to modify the raycaster and position of the laser.
 
 #### Browser
 
