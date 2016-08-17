@@ -77,9 +77,6 @@ AFRAME.registerComponent('vive-cursor', {
     this.onIntersectionClearedBind = this.onIntersectionCleared.bind(this);
     this.onMouseDownBind = this.onMouseDown.bind(this);
     this.onMouseUpBind = this.onMouseUp.bind(this);
-
-    // Attach event listeners.
-    this.attachEventListeners();
   },
 
   attachEventListeners: function () {
