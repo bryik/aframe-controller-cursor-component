@@ -6,15 +6,16 @@
   </head>
   <body>
     <a-scene>
-      <a-assets></a-assets>
 
+      <!-- Cursor applied to right-hand controller -->
       <a-entity vive-controls="hand: left"></a-entity>
-      <a-entity id="cursor" vive-controls="hand: right" vive-cursor></a-entity>
+      <a-entity vive-controls="hand: right" vive-cursor></a-entity>
 
-       <a-sphere id="sphere" position="0 2.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+       <a-sphere id="sphere" position="0 2.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
        <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
        <a-sky color="#ECECEC"></a-sky>
     </a-scene>
+
     <!-- Attach test events to sphere -->
     <script type="text/javascript">
       var sphere = d3.select('#sphere');

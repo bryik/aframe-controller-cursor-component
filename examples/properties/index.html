@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>A-Frame Vive Cursor Component - Color, Radius, and Objects Properties</title>
+    <script src="../build.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+      <!-- Cursor applied to right-hand controller. -->
+      <a-entity vive-controls="hand: left"></a-entity>
+      <a-entity id='cursor' vive-controls="hand: right" vive-cursor="color: red; radius: 0.01; objects: .sphere"></a-entity>
+
+      <!-- Will be tested for intersection -->
+      <a-sphere class="sphere" position="0 2.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+
+      <!-- Will not be tested for intersection. -->
+      <a-box class="box" position="-2.5 0 -4.5" color="#4CC3D9"></a-box>
+
+      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+
+    <!-- Attach test events to sphere -->
+    <script type="text/javascript">
+
+      // Sphere events
+      var sphere = d3.select('.sphere');
+      sphere.on('click', click);
+      sphere.on('mouseenter', mouseenter);
+      sphere.on('mouseleave', mouseleave);
+
+      // Box events (will not activate)
+      var box = d3.select('.box');
+      box.on('mouseenter', mouseenter);
+      box.on('mouseleave', mouseleave);
+
+      function mouseenter () {
+        console.log('MOUSEENTER');
+        var el = d3.select(this);
+        el.attr('color', 'blue');
+      }
+
+      function mouseleave () {
+        console.log('MOUSELEAVE');
+        var el = d3.select(this);
+        el.attr('color', 'red');
+      }
+
+      function click () {
+        console.log('CLICK');
+        var currentRadius = this.getAttribute('radius');
+        var el = d3.select(this);
+        var newRadius;
+
+        if (currentRadius === '2') {
+          newRadius = 1.25;
+        } else {
+          newRadius = 2;
+        }
+
+        el.attr('radius', newRadius);
+      }
+
+    </script>
+  </body>
+</html>
