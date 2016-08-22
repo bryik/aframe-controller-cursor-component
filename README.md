@@ -8,10 +8,12 @@ This is an [A-Frame](https://aframe.io) component for adding a cursor to an HTC 
 
 ### API
 
-| Property |          Description          | Default Value |
-|:--------:|:-----------------------------:|:-------------:|
-|   color  |          Laser color          |    0x0000ff   |
-|  radius  | Laser radius (top and bottom) |     0.001     |
+| Property |                                                  Description                                                  | Default Value |
+|:--------:|:-------------------------------------------------------------------------------------------------------------:|:-------------:|
+|   color  |                                                  Laser color                                                  |    0x0000ff   |
+|  radius  |                                         Laser radius (top and bottom)                                         |     0.001     |
+|  objects | Query selector to pick which objects to test for intersection. If not specified, all entities will be tested. |       ""      |
+
 
 ### Usage
 
