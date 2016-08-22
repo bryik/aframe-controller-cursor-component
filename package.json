@@ -1,6 +1,6 @@
 {
   "name": "aframe-vive-cursor-component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Vive Cursor component for A-Frame.",
   "main": "index.js",
   "scripts": {

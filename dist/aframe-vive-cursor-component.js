@@ -81,6 +81,10 @@
 	    radius: {
 	      type: 'number',
 	      default: '0.001'
+	    },
+	    objects: {
+	      type: 'string',
+	      default: ''
 	    }
 	  },
 
@@ -115,17 +119,15 @@
 	    cursorMesh.rotation.x = 90 * (Math.PI / 180);
 	    this.el.setObject3D('vive-cursor-mesh', cursorMesh);
 
-	    // Prevent laser beam from interfering with raycaster.
-	    cursorEl.setAttribute('raycaster', 'near: 0.03');
+	    // Prevent laser from interfering with raycaster by setting near property
+	    var rayCasterSettings = 'near: 0.03; objects: ' + data.objects;
+	    cursorEl.setAttribute('raycaster', rayCasterSettings);
 
 	    // Save event listener bindings (needed for removal).
 	    this.onIntersectionBind = this.onIntersection.bind(this);
 	    this.onIntersectionClearedBind = this.onIntersectionCleared.bind(this);
 	    this.onMouseDownBind = this.onMouseDown.bind(this);
 	    this.onMouseUpBind = this.onMouseUp.bind(this);
-
-	    // Attach event listeners.
-	    this.attachEventListeners();
 	  },
 
 	  attachEventListeners: function () {
