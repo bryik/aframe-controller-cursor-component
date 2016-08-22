@@ -1,10 +1,10 @@
 ## aframe-vive-cursor-component
 
-    Note: This component only works with A-Frame's master branch (soon to be released as 0.3.0).
-
 This is an [A-Frame](https://aframe.io) component for adding a cursor to an HTC Vive controller.
 
-![cursor-gif](http://i.imgur.com/QCgZWd7.gif)
+<p align="center">
+  <img src="http://i.imgur.com/QCgZWd7.gif"/>
+</p>
 
 ### API
 
@@ -23,9 +23,9 @@ Simply attach the component to an entity alongside the vive-controls component.
     <a-entity vive-controls="hand: right" vive-cursor></a-entity>
 ```
 
-As it is based on [A-Frame's built-in cursor](https://aframe.io/docs/master/components/cursor.html), many of the events and states are shared.
+As it is based on A-Frame's [built-in cursor](https://aframe.io/docs/master/components/cursor.html), many of the events and states are shared.
 
-Note that "mouseup" and "mousedown" have been mapped to the trigger. In other words, pulling the trigger is the same as clicking the right-mouse button.
+Note that "mouseup" and "mousedown" have been mapped to the trigger. In other words, pulling the trigger is the same as clicking.
 
 ### Notes
 
