@@ -56,6 +56,7 @@ AFRAME.registerComponent('vive-cursor', {
     var canvas = cursorEl.sceneEl.canvas;
     this.mouseDownEl = null;
     this.intersectedEl = null;
+    this.intersection = null;
 
     // Wait for canvas to load.
     if (!canvas) {
@@ -106,7 +107,7 @@ AFRAME.registerComponent('vive-cursor', {
   /**
    * Trigger mousedown and keep track of the mousedowned entity.
    */
-  onMouseDown: function (evt) {
+  onMouseDown: function () {
     this.twoWayEmit(EVENTS.MOUSEDOWN);
     this.mouseDownEl = this.intersectedEl;
   },
@@ -130,9 +131,28 @@ AFRAME.registerComponent('vive-cursor', {
     var self = this;
     var cursorEl = this.el;
     var intersectedEl = evt.detail.els[0];  // Grab the closest.
+    var intersection;
+    var index;
 
-    // Set intersected entity if not already intersecting.
-    if (this.intersectedEl === intersectedEl) { return; }
+    // Select closest object, excluding the cursor.
+    index = evt.detail.els[0] === cursorEl ? 1 : 0;
+    intersection = evt.detail.intersections[index];
+    intersectedEl = evt.detail.els[index];
+
+    // If cursor is the only intersected object, ignore the event.
+    if (!intersectedEl) { return; }
+
+    // Already intersecting this entity.
+    if (this.intersectedEl === intersectedEl) {
+      this.intersection = intersection;
+      return;
+    }
+
+    // Unset current intersection.
+    if (this.intersectedEl) { this.clearCurrentIntersection(); }
+
+    // Set new intersection.
+    this.intersection = intersection;
     this.intersectedEl = intersectedEl;
 
     // Hovering.
@@ -148,15 +168,25 @@ AFRAME.registerComponent('vive-cursor', {
     var cursorEl = this.el;
     var intersectedEl = evt.detail.el;
 
-    // Not intersecting.
-    if (!intersectedEl || !this.intersectedEl) { return; }
+    // Ignore the cursor.
+    if (cursorEl === intersectedEl) { return; }
 
-    // No longer hovering.
-    intersectedEl.removeState(STATES.HOVERED);
+    // Ignore if the event didn't occur on the current intersection.
+    if (intersectedEl !== this.intersectedEl) { return; }
+
+    this.clearCurrentIntersection();
+  },
+
+  clearCurrentIntersection: function () {
+    var cursorEl = this.el;
+
+    // No longer hovering (or fusing).
+    this.intersectedEl.removeState(STATES.HOVERED);
     cursorEl.removeState(STATES.HOVERING);
     this.twoWayEmit(EVENTS.MOUSELEAVE);
 
     // Unset intersected entity (after emitting the event).
+    this.intersection = null;
     this.intersectedEl = null;
   },
 
@@ -164,10 +194,12 @@ AFRAME.registerComponent('vive-cursor', {
    * Helper to emit on both the cursor and the intersected entity (if exists).
    */
   twoWayEmit: function (evtName) {
+    var el = this.el;
     var intersectedEl = this.intersectedEl;
-    this.el.emit(evtName, {intersectedEl: this.intersectedEl});
+    var intersection = this.intersection;
+    el.emit(evtName, {intersectedEl: intersectedEl, intersection: intersection});
     if (!intersectedEl) { return; }
-    intersectedEl.emit(evtName, {cursorEl: this.el});
+    intersectedEl.emit(evtName, {cursorEl: el, intersection: intersection});
   },
 
   /**
