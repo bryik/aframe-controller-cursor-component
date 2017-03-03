@@ -1,24 +1,32 @@
 <html>
   <head>
-    <title>A-Frame Vive Cursor Component - Basic</title>
+    <title>A-Frame Controller Cursor Component - Basic</title>
     <script src="../build.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
   </head>
   <body>
     <a-scene>
+      <a-assets></a-assets>
+      <!-- Camera with gaze cursor -->
+      <a-entity position="0 1.8 5">
+          <a-entity camera look-controls wasd-controls>
+              <a-entity cursor
+                        geometry="primitive: ring; radiusOuter: 0.015;
+                                  radiusInner: 0.01; segmentsTheta: 32"
+                        material="color: #283644; shader: flat"
+                        raycaster=""
+                        position="0 0 -0.75">
+              </a-entity>
+          </a-entity>
+      </a-entity>
 
-      <!-- Cursor applied to right-hand controller -->
-      <a-entity vive-controls="hand: left"></a-entity>
-      <a-entity vive-controls="hand: right" vive-cursor></a-entity>
-
-       <a-sphere id="sphere" position="0 2.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+       <a-sphere class="sphere" position="0 2.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
        <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
        <a-sky color="#ECECEC"></a-sky>
     </a-scene>
 
-    <!-- Attach test events to sphere -->
     <script type="text/javascript">
-      var sphere = d3.select('#sphere');
+      var sphere = d3.select('.sphere');
       sphere.on('click', click);
       sphere.on('mouseenter', mouseenter);
       sphere.on('mouseleave', mouseleave);

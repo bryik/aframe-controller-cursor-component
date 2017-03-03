@@ -1,19 +1,19 @@
 {
-  "name": "aframe-vive-cursor-component",
-  "version": "0.1.2",
-  "description": "Vive Cursor component for A-Frame.",
+  "name": "aframe-controller-cursor-component",
+  "version": "0.2.0",
+  "description": "Cursor component for tracked controls in A-Frame.",
   "main": "index.js",
   "scripts": {
-    "build": "browserify docs/main.js -o docs/build.js",
-    "dev": "budo docs/main.js:build.js --dir docs --port 8000 --live --open",
-    "dist": "webpack index.js dist/aframe-vive-cursor-component.js && webpack -p index.js dist/aframe-vive-cursor-component.min.js",
+    "build": "browserify examples/main.js -o examples/build.js",
+    "dev": "budo examples/main.js:build.js --dir examples --port 8000 --live --open",
+    "dist": "webpack index.js dist/aframe-controller-cursor-component.js && webpack -p index.js dist/aframe-controller-cursor-component.min.js",
     "lint": "semistandard -v | snazzy",
     "postpublish": "npm run dist",
     "ghpages": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aframe-vive-cursor-component.git"
+    "url": "git+https://github.com/aframe-controller-cursor-component.git"
   },
   "keywords": [
     "aframe",
@@ -26,9 +26,9 @@
   "author": "bryik <ben@wsundine.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aframe-vive-cursor-component/issues"
+    "url": "https://github.com/aframe-controller-cursor-component/issues"
   },
-  "homepage": "https://github.com/aframe-vive-cursor-component#readme",
+  "homepage": "https://github.com/aframe-controller-cursor-component#readme",
   "devDependencies": {
     "aframe": "^0.5.0",
     "browserify": "^13.1.0",
@@ -44,7 +44,7 @@
   },
   "semistandard": {
     "ignore": [
-      "docs/build.js",
+      "examples/build.js",
       "dist/**"
     ]
   }

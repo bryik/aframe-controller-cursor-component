@@ -1,15 +1,16 @@
 <html>
   <head>
-    <title>A-Frame Vive Cursor Component - Color, Radius, and Objects Properties</title>
+    <title>A-Frame Controller Cursor Component - Color, Radius, Objects Properties</title>
     <script src="../build.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
   </head>
   <body>
     <a-scene>
-
       <!-- Cursor applied to right-hand controller. -->
       <a-entity vive-controls="hand: left"></a-entity>
-      <a-entity id='cursor' vive-controls="hand: right" vive-cursor="color: red; radius: 0.01; objects: .sphere"></a-entity>
+      <a-entity id='cursor' vive-controls="hand: right"
+                controller-cursor="color: red; radius: 0.01"
+                raycaster="objects: .sphere"></a-entity>
 
       <!-- Will be tested for intersection -->
       <a-sphere class="sphere" position="0 2.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
@@ -23,7 +24,6 @@
 
     <!-- Attach test events to sphere -->
     <script type="text/javascript">
-
       // Sphere events
       var sphere = d3.select('.sphere');
       sphere.on('click', click);
