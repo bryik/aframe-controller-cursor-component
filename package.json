@@ -1,6 +1,6 @@
 {
   "name": "aframe-controller-cursor-component",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Cursor component for tracked controls in A-Frame.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aframe-controller-cursor-component.git"
+    "url": "git+https://github.com/bryik/aframe-controller-cursor-component.git"
   },
   "keywords": [
     "aframe",
