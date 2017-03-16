@@ -85,6 +85,7 @@ AFRAME.registerComponent('controller-cursor', {
    * Remove event listeners.
    */
   pause: function () {
+    var cursorEl = this.el;
     cursorEl.removeEventListener('raycaster-intersection', this.onIntersectionBind);
     cursorEl.removeEventListener('raycaster-intersection-cleared',
                                  this.onIntersectionClearedBind);
