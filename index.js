@@ -54,13 +54,14 @@ AFRAME.registerComponent('controller-cursor', {
 
     // Create laser beam.
     var raycasterLength = cursorEl.getAttribute('raycaster').far;
+    var laserLength = raycasterLength === Infinity ? 1000 : raycasterLength;
+
     var cursorGeometry = new THREE.CylinderBufferGeometry(
-      data.radius, data.radius,
-      raycasterLength === Infinity ? 1000: raycasterLength, 32);
+      data.radius, data.radius, laserLength, 32);
     var cursorMaterial = new THREE.MeshBasicMaterial({color: data.color});
     var cursorMesh = new THREE.Mesh(cursorGeometry, cursorMaterial);
     // Move mesh so beam starts at tip of controller model.
-    cursorMesh.position.z = -500;
+    cursorMesh.position.z = -1 * laserLength / 2;
     // Rotate mesh to point directly away from controller model.
     cursorMesh.rotation.x = 90 * (Math.PI / 180);
     cursorEl.setObject3D('cursormesh', cursorMesh);
