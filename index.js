@@ -49,8 +49,13 @@ AFRAME.registerComponent('controller-cursor', {
       return;
     }
 
+    // Prevent laser from interfering with raycaster by setting near property
+    cursorEl.setAttribute('raycaster', {near: 0.03});
+
     // Create laser beam.
-    var cursorGeometry = new THREE.CylinderGeometry(data.radius, data.radius, 1000, 32);
+    var cursorGeometry = new THREE.CylinderGeometry(
+      data.radius, data.radius,
+      cursorEl.getAttribute('raycaster').far, 32);
     var cursorMaterial = new THREE.MeshBasicMaterial({color: data.color});
     var cursorMesh = new THREE.Mesh(cursorGeometry, cursorMaterial);
     // Move mesh so beam starts at tip of controller model.
@@ -58,9 +63,6 @@ AFRAME.registerComponent('controller-cursor', {
     // Rotate mesh to point directly away from controller model.
     cursorMesh.rotation.x = 90 * (Math.PI / 180);
     cursorEl.setObject3D('cursormesh', cursorMesh);
-
-    // Prevent laser from interfering with raycaster by setting near property
-    cursorEl.setAttribute('raycaster', {near: 0.03});
 
     // Bind methods.
     this.onIntersectionBind = bind(this.onIntersection, this);

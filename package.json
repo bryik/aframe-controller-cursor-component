@@ -1,6 +1,6 @@
 {
   "name": "aframe-controller-cursor-component",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Cursor component for tracked controls in A-Frame.",
   "main": "index.js",
   "scripts": {
