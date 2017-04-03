@@ -53,9 +53,10 @@ AFRAME.registerComponent('controller-cursor', {
     cursorEl.setAttribute('raycaster', {near: 0.03});
 
     // Create laser beam.
-    var cursorGeometry = new THREE.CylinderGeometry(
+    var raycasterLength = cursorEl.getAttribute('raycaster').far;
+    var cursorGeometry = new THREE.CylinderBufferGeometry(
       data.radius, data.radius,
-      cursorEl.getAttribute('raycaster').far, 32);
+      raycasterLength === Infinity ? 1000: raycasterLength, 32);
     var cursorMaterial = new THREE.MeshBasicMaterial({color: data.color});
     var cursorMesh = new THREE.Mesh(cursorGeometry, cursorMaterial);
     // Move mesh so beam starts at tip of controller model.
