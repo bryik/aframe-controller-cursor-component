@@ -4,8 +4,8 @@
   "description": "Cursor component for tracked controls in A-Frame.",
   "main": "index.js",
   "scripts": {
-    "build": "browserify examples/main.js -o examples/build.js",
-    "dev": "budo examples/main.js:build.js --dir examples --port 8000 --live --open",
+    "build": "browserify docs/main.js -o docs/build.js",
+    "dev": "budo docs/main.js:build.js --dir docs --port 8000 --live --open",
     "dist": "webpack index.js dist/aframe-controller-cursor-component.js && webpack -p index.js dist/aframe-controller-cursor-component.min.js",
     "lint": "semistandard -v | snazzy",
     "postpublish": "npm run dist",
@@ -44,7 +44,7 @@
   },
   "semistandard": {
     "ignore": [
-      "examples/build.js",
+      "docs/build.js",
       "dist/**"
     ]
   }

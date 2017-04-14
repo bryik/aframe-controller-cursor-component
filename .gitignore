@@ -1,6 +1,6 @@
 .sw[ponm]
-examples/build.js
-examples/node_modules/
+docs/build.js
+docs/node_modules/
 gh-pages
 node_modules/
 npm-debug.log
