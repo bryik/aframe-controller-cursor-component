@@ -47,7 +47,7 @@ Install and use by directly including the [browser files](dist):
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-controller-cursor-component/dist/aframe-controller-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-controller-cursor-component@0.2.6/dist/aframe-controller-cursor-component.min.js"></script>
 </head>
 
 <body>
