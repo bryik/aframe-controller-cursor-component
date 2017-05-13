@@ -9,10 +9,12 @@ tracked controls (e.g., HTC Vive, Oculus Touch).
 
 ### API
 
-| Property | Description                    | Default Value |
-|----------|--------------------------------|---------------|
-| color    | Laser color.                   | #74BEC1       |
-| radius   | Laser radius (top and bottom). | 0.001         |
+| Property   | Description                                                                             | Default Value |
+|------------|-----------------------------------------------------------------------------------------|---------------|
+| color      | Laser color.                                                                            | #74BEC1       |
+| downEvents | Event to detect button down, comma-separated. For example, use `trackpaddown` for 3DoF. | triggerdown   |
+| upEvents   | Event to detect button up, comma-separated. For example, use `trackpadup` for 3DoF.     | triggerup     |
+| radius     | Laser radius (top and bottom).                                                          | 0.001         |
 
 ### Usage
 

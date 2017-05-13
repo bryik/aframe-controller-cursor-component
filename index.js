@@ -32,7 +32,9 @@ AFRAME.registerComponent('controller-cursor', {
 
   schema: {
     color: {default: '#74BEC1'},
-    radius: {default: 0.001}
+    downEvents: {default: ['triggerdown']},
+    radius: {default: 0.001},
+    upEvents: {default: ['triggerup']}
   },
 
   init: function () {
@@ -78,11 +80,19 @@ AFRAME.registerComponent('controller-cursor', {
    */
   play: function () {
     var cursorEl = this.el;
+    var data = this.data;
+    var self = this;
+
     cursorEl.addEventListener('raycaster-intersection', this.onIntersectionBind);
     cursorEl.addEventListener('raycaster-intersection-cleared',
                               this.onIntersectionClearedBind);
-    cursorEl.addEventListener('triggerdown', this.onTriggerDownBind);
-    cursorEl.addEventListener('triggerup', this.onTriggerUpBind);
+
+    data.downEvents.forEach(function (downEvent) {
+      cursorEl.addEventListener(downEvent, self.onTriggerDownBind);
+    });
+    data.upEvents.forEach(function (upEvent) {
+      cursorEl.addEventListener(upEvent, self.onTriggerUpBind);
+    });
   },
 
   /**
@@ -90,11 +100,19 @@ AFRAME.registerComponent('controller-cursor', {
    */
   pause: function () {
     var cursorEl = this.el;
+    var data = this.data;
+    var self = this;
+
     cursorEl.removeEventListener('raycaster-intersection', this.onIntersectionBind);
     cursorEl.removeEventListener('raycaster-intersection-cleared',
                                  this.onIntersectionClearedBind);
-    cursorEl.removeEventListener('triggerdown', this.onTriggerDownBind);
-    cursorEl.removeEventListener('triggerup', this.onTriggerUpBind);
+
+    data.downEvents.forEach(function (downEvent) {
+      cursorEl.removeEventListener(downEvent, self.onTriggerDownBind);
+    });
+    data.upEvents.forEach(function (upEvent) {
+      cursorEl.removeEventListener(upEvent, self.onTriggerUpBind);
+    });
   },
 
   /**
