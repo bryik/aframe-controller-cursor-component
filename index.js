@@ -102,7 +102,6 @@ AFRAME.registerComponent('controller-cursor', {
     var cursorEl = this.el;
     var data = this.data;
     var self = this;
-
     cursorEl.removeEventListener('raycaster-intersection', this.onIntersectionBind);
     cursorEl.removeEventListener('raycaster-intersection-cleared',
                                  this.onIntersectionClearedBind);
@@ -113,6 +112,14 @@ AFRAME.registerComponent('controller-cursor', {
     data.upEvents.forEach(function (upEvent) {
       cursorEl.removeEventListener(upEvent, self.onTriggerUpBind);
     });
+  },
+
+  /**
+   * Remove mesh.
+   */
+  remove: function () {
+    var cursorEl = this.el;
+    cursorEl.removeObject3D('cursormesh');
   },
 
   /**

@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* global AFRAME, THREE */
 	var bind = AFRAME.utils.bind;
@@ -78,7 +78,9 @@
 
 	  schema: {
 	    color: {default: '#74BEC1'},
-	    radius: {default: 0.001}
+	    downEvents: {default: ['triggerdown']},
+	    radius: {default: 0.001},
+	    upEvents: {default: ['triggerup']}
 	  },
 
 	  init: function () {
@@ -124,11 +126,19 @@
 	   */
 	  play: function () {
 	    var cursorEl = this.el;
+	    var data = this.data;
+	    var self = this;
+
 	    cursorEl.addEventListener('raycaster-intersection', this.onIntersectionBind);
 	    cursorEl.addEventListener('raycaster-intersection-cleared',
 	                              this.onIntersectionClearedBind);
-	    cursorEl.addEventListener('triggerdown', this.onTriggerDownBind);
-	    cursorEl.addEventListener('triggerup', this.onTriggerUpBind);
+
+	    data.downEvents.forEach(function (downEvent) {
+	      cursorEl.addEventListener(downEvent, self.onTriggerDownBind);
+	    });
+	    data.upEvents.forEach(function (upEvent) {
+	      cursorEl.addEventListener(upEvent, self.onTriggerUpBind);
+	    });
 	  },
 
 	  /**
@@ -136,11 +146,26 @@
 	   */
 	  pause: function () {
 	    var cursorEl = this.el;
+	    var data = this.data;
+	    var self = this;
 	    cursorEl.removeEventListener('raycaster-intersection', this.onIntersectionBind);
 	    cursorEl.removeEventListener('raycaster-intersection-cleared',
 	                                 this.onIntersectionClearedBind);
-	    cursorEl.removeEventListener('triggerdown', this.onTriggerDownBind);
-	    cursorEl.removeEventListener('triggerup', this.onTriggerUpBind);
+
+	    data.downEvents.forEach(function (downEvent) {
+	      cursorEl.removeEventListener(downEvent, self.onTriggerDownBind);
+	    });
+	    data.upEvents.forEach(function (upEvent) {
+	      cursorEl.removeEventListener(upEvent, self.onTriggerUpBind);
+	    });
+	  },
+
+	  /**
+	   * Remove mesh.
+	   */
+	  remove: function () {
+	    var cursorEl = this.el;
+	    cursorEl.removeObject3D('cursormesh');
 	  },
 
 	  /**
@@ -243,5 +268,5 @@
 	});
 
 
-/***/ }
+/***/ })
 /******/ ]);
