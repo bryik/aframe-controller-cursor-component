@@ -1,5 +1,9 @@
 ## aframe-controller-cursor-component
 
+**Only works with A-Frame master**. See [issue #16](https://github.com/bryik/aframe-controller-cursor-component/issues/16).
+
+<hr>
+
 [A-Frame](https://aframe.io) component for adding a laser-style cursor to a
 tracked controls (e.g., HTC Vive, Oculus Touch).
 
