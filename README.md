@@ -1,6 +1,6 @@
 ## aframe-controller-cursor-component
 
-**Only works with A-Frame master**. See [issue #16](https://github.com/bryik/aframe-controller-cursor-component/issues/16).
+**This is an old component!** A-Frame 0.6.0 and up includes [laser-controls](https://aframe.io/docs/0.6.0/components/laser-controls.html). Use that instead!
 
 <hr>
 
